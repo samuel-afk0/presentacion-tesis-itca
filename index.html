@@ -520,7 +520,7 @@
 </section>
 
 <!-- ============ 16 · ACTIVE DIRECTORY · DESPLIEGUE EN SERVIDOR ============ -->
-<section data-label="AD · Despliegue" data-screen-label="16" data-speaker-notes="Cómo se despliega NOVA en el servidor del ITCA, en cinco pasos concretos y en una sola vista. Paso 1, preparar el servidor: un equipo del ITCA con tarjeta gráfica, instalar Ubuntu Server y dejar un disco propio para los datos. Paso 2, unir al dominio: pedir a IT la cuenta de unión y ejecutar la unión a Active Directory; el servidor queda registrado como un equipo más. Paso 3, cargar las llaves: IT entrega la cuenta de servicio y se guarda en el archivo .env del servidor, con permisos protegidos, nunca en el código. Paso 4, instalar NOVA: copiar la aplicación y levantar la IA, la web, la voz y la base de datos como servicios del sistema. Paso 5, publicar: activar el certificado HTTPS del ITCA y el arranque automático, y queda disponible en el DNS interno. Cierre: la IA, los datos y la identidad viven dentro de la institución; nada sale a la nube." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<section data-label="AD · Despliegue" data-screen-label="16" data-speaker-notes="Cómo se despliega NOVA en el servidor del ITCA, por etapas. A la izquierda las cinco etapas; al hacer clic en cada una, a la derecha aparece el detalle concreto de qué se instala y qué se hace. ETAPA 1, preparar el servidor: equipo con GPU NVIDIA, 32 GB de RAM y disco de 200 GB; instalar Ubuntu Server; instalar los drivers NVIDIA y CUDA; instalar las dependencias base (Python, Node, PostgreSQL, Ollama, ffmpeg); crear la carpeta de la aplicación en el disco persistente. ETAPA 2, unir al dominio: instalar los paquetes de unión (realmd, sssd, adcli, krb5-user); sincronizar el reloj con el NTP del dominio porque Kerberos lo exige; pedir a IT la cuenta de unión y la unidad organizativa; ejecutar realm join contra el dominio; verificar con realm list. ETAPA 3, identidad y llaves: pedir a IT la cuenta de servicio del directorio; crear el archivo .env de la aplicación; colocar ahí las credenciales de AD; proteger el archivo con permisos 600 y dueño correcto; jamás subir ese archivo al repositorio ni al frontend. ETAPA 4, instalar NOVA: clonar el repositorio; crear el entorno de Python e instalar dependencias; construir el frontend de React; descargar el modelo de lenguaje en Ollama; crear los servicios systemd de Django, frontend, Ollama y voz. ETAPA 5, publicar y arrancar: configurar Nginx como proxy con el certificado HTTPS del ITCA; registrar el hostname en el DNS interno; abrir el puerto 443 en el firewall; habilitar el arranque automático de todos los servicios; reiniciar y verificar que todo levante solo. Cierre: la IA, los datos y la identidad viven dentro de la institución; nada sale a la nube." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:14px;">
       <svg width="44" height="44" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="13" fill="#00366b"></rect><rect x="30" y="30" width="22" height="22" rx="7" fill="#e8530e"></rect><text x="17" y="34" font-family="'Libre Franklin'" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">IT</text></svg>
@@ -528,75 +528,98 @@
     </div>
     <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.18em; color:#9aa9bd;">16 / 17</div>
   </div>
-  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 8px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">16 · DESPLIEGUE EN SERVIDOR</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ 5 pasos, dentro del dominio</span></div>
-  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; line-height:1.04; margin:0 0 26px;">Cómo se despliega en el servidor del ITCA</h2>
+  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 8px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">16 · DESPLIEGUE EN SERVIDOR</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ etapas · clic para ver el detalle</span></div>
+  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:44px; line-height:1.04; margin:0 0 22px;">Cómo se despliega en el servidor del ITCA, etapa por etapa</h2>
 
-  <div data-rise style="display:flex; align-items:stretch; gap:8px; flex:1; min-height:0;">
+  <div style="display:grid; grid-template-columns:0.92fr 1.25fr; gap:30px; flex:1; min-height:0;">
 
-    <!-- 1 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">1</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1.5"></rect><rect x="2" y="15" width="20" height="6" rx="1.5"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
-      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Preparar el servidor</div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Equipo del ITCA con <strong style="color:#0b1f33;">tarjeta gráfica (GPU)</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Instalar <strong style="color:#0b1f33;">Ubuntu Server</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Disco propio para los <strong style="color:#0b1f33;">datos</strong></span></div>
+    <!-- ETAPAS (izquierda) -->
+    <div data-rise style="display:flex; flex-direction:column; gap:11px;">
+      <div onClick="{{ setDep0 }}" style="cursor:pointer; display:flex; align-items:center; gap:16px; background:#fff; border:2px solid #d9e1ee; border-radius:14px; padding:16px 18px;">
+        <span style="width:40px; height:40px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; flex:none;">1</span>
+        <div style="flex:1;"><div style="font-size:21px; font-weight:700; line-height:1.1;">Preparar el servidor</div><div style="font-size:15px; color:#5b6b80;">sistema base y dependencias</div></div>
+        <sc-if value="{{ dep0 }}" hint-placeholder-val="{{ true }}"><span style="color:#e8530e; font-size:22px; flex:none;">▸</span></sc-if>
       </div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
-
-    <!-- 2 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">2</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"></path></svg></div>
-      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Unir al dominio</div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Pedir a IT la <strong style="color:#0b1f33;">cuenta de unión</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Ejecutar la unión a <strong style="color:#0b1f33;">Active Directory</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Queda <strong style="color:#0b1f33;">registrado como un equipo más</strong></span></div>
+      <div onClick="{{ setDep1 }}" style="cursor:pointer; display:flex; align-items:center; gap:16px; background:#fff; border:2px solid #d9e1ee; border-radius:14px; padding:16px 18px;">
+        <span style="width:40px; height:40px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; flex:none;">2</span>
+        <div style="flex:1;"><div style="font-size:21px; font-weight:700; line-height:1.1;">Unir al dominio</div><div style="font-size:15px; color:#5b6b80;">realmd / sssd → Active Directory</div></div>
+        <sc-if value="{{ dep1 }}" hint-placeholder-val="{{ false }}"><span style="color:#e8530e; font-size:22px; flex:none;">▸</span></sc-if>
       </div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
-
-    <!-- 3 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">3</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="M10.5 12.5 21 2"></path><path d="M16 7l3 3"></path></svg></div>
-      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Cargar las llaves</div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">IT entrega la <strong style="color:#0b1f33;">cuenta de servicio</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Guardar en el archivo <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:16px;">.env</strong> del servidor</span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#c0451c; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;"><strong style="color:#c0451c;">Nunca</strong> en el código ni en el front</span></div>
+      <div onClick="{{ setDep2 }}" style="cursor:pointer; display:flex; align-items:center; gap:16px; background:#fff; border:2px solid #d9e1ee; border-radius:14px; padding:16px 18px;">
+        <span style="width:40px; height:40px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; flex:none;">3</span>
+        <div style="flex:1;"><div style="font-size:21px; font-weight:700; line-height:1.1;">Identidad y llaves</div><div style="font-size:15px; color:#5b6b80;">cuenta de servicio + archivo .env</div></div>
+        <sc-if value="{{ dep2 }}" hint-placeholder-val="{{ false }}"><span style="color:#e8530e; font-size:22px; flex:none;">▸</span></sc-if>
       </div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
-
-    <!-- 4 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">4</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></div>
-      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Instalar NOVA</div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Copiar la <strong style="color:#0b1f33;">aplicación</strong> al servidor</span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Levantar <strong style="color:#0b1f33;">IA, web, voz y base de datos</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Corren como <strong style="color:#0b1f33;">servicios del sistema</strong></span></div>
+      <div onClick="{{ setDep3 }}" style="cursor:pointer; display:flex; align-items:center; gap:16px; background:#fff; border:2px solid #d9e1ee; border-radius:14px; padding:16px 18px;">
+        <span style="width:40px; height:40px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; flex:none;">4</span>
+        <div style="flex:1;"><div style="font-size:21px; font-weight:700; line-height:1.1;">Instalar NOVA</div><div style="font-size:15px; color:#5b6b80;">app + modelo + servicios</div></div>
+        <sc-if value="{{ dep3 }}" hint-placeholder-val="{{ false }}"><span style="color:#e8530e; font-size:22px; flex:none;">▸</span></sc-if>
       </div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
-
-    <!-- 5 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#f1faf5; border:1px solid #c9ebd9; border-radius:16px; padding:24px 20px;">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#1f9d6b; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">5</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1f9d6b" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"></path><path d="M18.4 6.6a9 9 0 1 1-12.8 0"></path></svg></div>
-      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Publicar y arrancar</div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Activar el <strong style="color:#0b1f33;">HTTPS del ITCA</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Activar el <strong style="color:#0b1f33;">arranque automático</strong></span></div>
-        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Disponible en el <strong style="color:#0b1f33;">DNS interno</strong></span></div>
+      <div onClick="{{ setDep4 }}" style="cursor:pointer; display:flex; align-items:center; gap:16px; background:#f1faf5; border:2px solid #c9ebd9; border-radius:14px; padding:16px 18px;">
+        <span style="width:40px; height:40px; border-radius:50%; background:#1f9d6b; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; flex:none;">5</span>
+        <div style="flex:1;"><div style="font-size:21px; font-weight:700; line-height:1.1;">Publicar y arrancar</div><div style="font-size:15px; color:#5b6b80;">HTTPS + DNS + arranque auto</div></div>
+        <sc-if value="{{ dep4 }}" hint-placeholder-val="{{ false }}"><span style="color:#1f9d6b; font-size:22px; flex:none;">▸</span></sc-if>
       </div>
     </div>
 
+    <!-- DETALLE (derecha) -->
+    <div data-fade style="background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:30px 36px; display:flex; flex-direction:column;">
+      <sc-if value="{{ dep0 }}" hint-placeholder-val="{{ true }}"><div>
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#0a59a6;">ETAPA 1</span><span style="font-size:27px; font-weight:700;">Preparar el servidor</span></div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Equipo del ITCA con <strong style="color:#0b1f33;">GPU NVIDIA</strong>, RAM ≥ 32 GB y disco ≥ 200 GB</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Instalar <strong style="color:#0b1f33;">Ubuntu Server LTS</strong></span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Instalar los <strong style="color:#0b1f33;">drivers NVIDIA + CUDA</strong> (para la IA)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Instalar dependencias: <strong style="color:#0b1f33;">Python, Node, PostgreSQL, Ollama, ffmpeg</strong></span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Crear la carpeta de la app en el <strong style="color:#0b1f33;">disco persistente</strong> (<span style="font-family:'IBM Plex Mono',monospace; font-size:18px;">/opt/nova</span>)</span></div>
+        </div>
+      </div></sc-if>
+      <sc-if value="{{ dep1 }}" hint-placeholder-val="{{ false }}"><div>
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#0a59a6;">ETAPA 2</span><span style="font-size:27px; font-weight:700;">Unir al dominio de Active Directory</span></div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Instalar los paquetes de unión: <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:18px;">realmd, sssd, adcli, krb5-user</strong></span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Sincronizar el <strong style="color:#0b1f33;">reloj con el NTP del dominio</strong> (Kerberos lo exige)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Pedir a IT la <strong style="color:#0b1f33;">cuenta de unión</strong> y la unidad organizativa (OU)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Ejecutar la unión: <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:18px;">realm join itca.edu.sv</strong></span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Verificar con <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:18px;">realm list</strong> (aparece el dominio)</span></div>
+        </div>
+      </div></sc-if>
+      <sc-if value="{{ dep2 }}" hint-placeholder-val="{{ false }}"><div>
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#0a59a6;">ETAPA 3</span><span style="font-size:27px; font-weight:700;">Identidad de servicio y llaves</span></div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Pedir a IT la <strong style="color:#0b1f33;">cuenta de servicio</strong> del directorio (lectura de grupos)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Crear el archivo <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:18px;">/opt/nova/.env</strong></span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Colocar ahí las <strong style="color:#0b1f33;">credenciales de AD</strong> (Tenant/Client/Secret o bind LDAP)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Proteger el archivo: <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:18px;">chmod 600</strong> y dueño correcto</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#c0451c; font-size:20px;">✕</span><span style="font-size:20px; line-height:1.4; color:#3d5163;"><strong style="color:#c0451c;">Nunca</strong> subir el <span style="font-family:'IBM Plex Mono',monospace; font-size:18px;">.env</span> al repositorio ni al frontend</span></div>
+        </div>
+      </div></sc-if>
+      <sc-if value="{{ dep3 }}" hint-placeholder-val="{{ false }}"><div>
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#0a59a6;">ETAPA 4</span><span style="font-size:27px; font-weight:700;">Instalar NOVA</span></div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Clonar el <strong style="color:#0b1f33;">repositorio</strong> en <span style="font-family:'IBM Plex Mono',monospace; font-size:18px;">/opt/nova</span></span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Crear el <strong style="color:#0b1f33;">entorno de Python</strong> e instalar dependencias</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Construir el <strong style="color:#0b1f33;">frontend</strong> (build de React)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Descargar el <strong style="color:#0b1f33;">modelo de lenguaje</strong> en Ollama (12b)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Crear los <strong style="color:#0b1f33;">servicios systemd</strong>: Django, frontend, Ollama y voz</span></div>
+        </div>
+      </div></sc-if>
+      <sc-if value="{{ dep4 }}" hint-placeholder-val="{{ false }}"><div>
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#1f8a5b;">ETAPA 5</span><span style="font-size:27px; font-weight:700;">Publicar y arrancar</span></div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Configurar <strong style="color:#0b1f33;">Nginx</strong> como proxy con el <strong style="color:#0b1f33;">certificado HTTPS del ITCA</strong></span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Registrar el hostname en el <strong style="color:#0b1f33;">DNS interno</strong> (<span style="font-family:'IBM Plex Mono',monospace; font-size:18px;">nova.itca.edu.sv</span>)</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Abrir el <strong style="color:#0b1f33;">puerto 443</strong> en el firewall</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;">Habilitar el <strong style="color:#0b1f33;">arranque automático</strong> de todos los servicios</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:20px;">✓</span><span style="font-size:20px; line-height:1.4; color:#3d5163;"><strong style="color:#0b1f33;">Reiniciar y verificar</strong>: todo levanta solo</span></div>
+        </div>
+      </div></sc-if>
+    </div>
   </div>
 
-  <div data-rise style="margin-top:24px; background:#00366b; border-radius:16px; padding:20px 36px; display:flex; align-items:center; gap:22px;">
-    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#ff8a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-    <p style="margin:0; font-size:23px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">El servidor queda como un miembro más del dominio del ITCA:</strong> la IA, los datos y la identidad viven dentro de la institución. Nada sale a la nube.</p>
+  <div data-rise style="margin-top:20px; background:#00366b; border-radius:16px; padding:18px 36px; display:flex; align-items:center; gap:22px;">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff8a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+    <p style="margin:0; font-size:22px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">El servidor queda como un miembro más del dominio del ITCA:</strong> la IA, los datos y la identidad viven dentro de la institución. Nada sale a la nube.</p>
   </div>
 </section>
 <!-- ============ 17 · CIERRE ============ -->
