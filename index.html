@@ -383,8 +383,8 @@
   </div></sc-if>
 </section>
 
-<!-- ============ 13 · ACTIVE DIRECTORY · CONCEPTO ============ -->
-<section data-label="AD · Concepto" data-screen-label="13" data-speaker-notes="Plantear el problema: hoy la plataforma gestiona sus propios usuarios en Django local — guarda contraseñas, altas y bajas manuales, sin conexión con la identidad real del ITCA. Active Directory es el directorio donde el ITCA ya administra a todo su personal; integrarlo convierte a la plataforma en parte del ecosistema institucional (identidad federada). Recorrer el flujo de 5 pasos haciendo clic. Aclarar el alcance: la plataforma tiene DOS tipos de usuario. Los aspirantes y el público usan el chat y la voz de orientación de forma libre y anónima, SIN cuenta ni contraseña — no pasan por Active Directory. El inicio de sesión con AD aplica ÚNICAMENTE al personal del ITCA (asesores, orientadores, IT) que entra al panel administrativo; el flujo de 5 pasos es solo para ellos. Frase clave: la plataforma NUNCA ve la contraseña — solo recibe una afirmación firmada de Microsoft / LDAP de que la persona es quien dice ser y pertenece a estos grupos." style="position:relative; width:100%; height:100%; background:#fff; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<!-- ============ 13 · ACTIVE DIRECTORY · APEGO / JUSTIFICACIÓN ============ -->
+<section data-label="AD · Apego" data-screen-label="13" data-speaker-notes="Abrir la sección de Active Directory con el porqué y el qué. El problema: hoy NOVA es una isla — gestiona sus propios usuarios en Django local, guarda contraseñas, hace altas y bajas a mano y corre en un servidor externo a la institución. Apegarse a Active Directory, el directorio donde el ITCA ya administra a todo su personal, convierte a NOVA en parte del ecosistema institucional. Aclarar que el apego ocurre en DOS capas independientes y que el resto de esta sección recorre cada una: CAPA 1 (infraestructura) — el servidor donde vive NOVA se une al dominio y se vuelve un miembro más, con DNS interno, cuentas de servicio, respaldos y certificados gestionados por IT; se detalla en la slide 16. CAPA 2 (identidad) — el personal del ITCA inicia sesión con su propia cuenta institucional (SSO), sin que NOVA guarde contraseñas; se detalla en las slides 14 y 15. Importante: solo el personal pasa por AD; los aspirantes y el público usan el chat y la voz sin cuenta. Cerrar con la frase: apego completo significa que nada de NOVA — ni la IA, ni los datos de los aspirantes, ni las credenciales — vive fuera del ITCA." style="position:relative; width:100%; height:100%; background:#fff; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:14px;">
       <svg width="44" height="44" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="13" fill="#00366b"></rect><rect x="30" y="30" width="22" height="22" rx="7" fill="#e8530e"></rect><text x="17" y="34" font-family="'Libre Franklin'" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">IT</text></svg>
@@ -392,44 +392,41 @@
     </div>
     <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.18em; color:#9aa9bd;">13 / 17</div>
   </div>
-  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 14px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">13 · APEGO A ACTIVE DIRECTORY</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ flujo de acceso del personal</span></div>
-  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:52px; line-height:1.05; margin:0 0 18px;">De una isla a la identidad <span style="color:#0a59a6;">federada</span> del ITCA</h2>
-  <div data-rise style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:0 0 24px;">
-    <div style="display:flex; gap:16px; align-items:flex-start; background:#f1faf5; border:1px solid #c9ebd9; border-radius:14px; padding:20px 24px;">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1f9d6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-      <div><div style="font-size:23px; font-weight:700; margin-bottom:4px;">Aspirantes y público</div><div style="font-size:19px; line-height:1.45; color:#3d5163;">Usan el chat y la voz de orientación <strong style="color:#1f8a5b;">sin cuenta ni contraseña</strong>: acceso libre y anónimo, sin pasar por Active Directory.</div></div>
+  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 14px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">13 · APEGO A ACTIVE DIRECTORY</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ por qué y en qué consiste</span></div>
+  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:50px; line-height:1.05; margin:0 0 14px;">De una <span style="color:#c0451c;">isla</span> a una pieza del <span style="color:#0a59a6;">dominio</span> del ITCA</h2>
+  <p data-rise style="font-size:21px; line-height:1.5; color:#3d5163; margin:0 0 26px; max-width:1200px;">Hoy NOVA es una isla: administra sus propios usuarios, guarda contraseñas y corre en un servidor externo. <strong style="color:#0b1f33;">Apegarse a Active Directory</strong> —el directorio donde el ITCA ya administra a todo su personal— la integra al ecosistema institucional. El apego ocurre en <strong style="color:#0a59a6;">dos capas independientes</strong>:</p>
+
+  <div data-rise style="display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1;">
+    <div style="display:flex; flex-direction:column; background:#eef3fa; border:1px solid #cdddef; border-radius:18px; padding:30px 32px;">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1.5"></rect><rect x="2" y="15" width="20" height="6" rx="1.5"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+        <div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.16em; color:#0a59a6;">CAPA 1 · INFRAESTRUCTURA</div><div style="font-size:27px; font-weight:700; line-height:1.1;">El servidor entra al dominio</div></div>
+      </div>
+      <p style="font-size:19px; line-height:1.5; color:#3d5163; margin:0 0 18px;">La máquina donde vive NOVA se vuelve <strong style="color:#0b1f33;">un miembro más del dominio</strong>, igual que cualquier equipo del ITCA: DNS interno, cuentas de servicio, respaldos y certificados gestionados por IT.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#fff; color:#0a59a6; border:1px solid #cdddef; padding:7px 12px; border-radius:8px;">realm join</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#fff; color:#0a59a6; border:1px solid #cdddef; padding:7px 12px; border-radius:8px;">DNS interno</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#fff; color:#0a59a6; border:1px solid #cdddef; padding:7px 12px; border-radius:8px;">cuenta de servicio</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#fff; color:#0a59a6; border:1px solid #cdddef; padding:7px 12px; border-radius:8px;">respaldos</span></div>
+      <div style="margin-top:auto; padding-top:18px; font-family:'IBM Plex Mono',monospace; font-size:14px; color:#5b6b80;">▸ se detalla en la slide 16 · Despliegue</div>
     </div>
-    <div style="display:flex; gap:16px; align-items:flex-start; background:#eef3fa; border:1px solid #cdddef; border-radius:14px; padding:20px 24px;">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-      <div><div style="font-size:23px; font-weight:700; margin-bottom:4px;">Personal del ITCA</div><div style="font-size:19px; line-height:1.45; color:#3d5163;">Inician sesión con <strong style="color:#0a59a6;">Active Directory</strong> solo para el panel administrativo. <strong style="color:#0b1f33;">El flujo de abajo es solo para ellos.</strong></div></div>
+
+    <div style="display:flex; flex-direction:column; background:#f1faf5; border:1px solid #c9ebd9; border-radius:18px; padding:30px 32px;">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1f9d6b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.16em; color:#1f8a5b;">CAPA 2 · IDENTIDAD</div><div style="font-size:27px; font-weight:700; line-height:1.1;">El personal entra con su cuenta</div></div>
+      </div>
+      <p style="font-size:19px; line-height:1.5; color:#3d5163; margin:0 0 18px;">Los asesores inician sesión con su <strong style="color:#0b1f33;">credencial institucional</strong> (SSO). NOVA nunca guarda contraseñas y los permisos se derivan de los grupos del directorio.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#fff; color:#1f8a5b; border:1px solid #c9ebd9; padding:7px 12px; border-radius:8px;">SSO</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#fff; color:#1f8a5b; border:1px solid #c9ebd9; padding:7px 12px; border-radius:8px;">sin contraseñas</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#fff; color:#1f8a5b; border:1px solid #c9ebd9; padding:7px 12px; border-radius:8px;">grupos → permisos</span></div>
+      <div style="margin-top:14px; font-size:16px; line-height:1.4; color:#5b6b80;">Solo el personal pasa por AD; los aspirantes usan el chat y la voz <strong style="color:#1f8a5b;">sin cuenta</strong>.</div>
+      <div style="margin-top:auto; padding-top:14px; font-family:'IBM Plex Mono',monospace; font-size:14px; color:#5b6b80;">▸ se detalla en las slides 14 y 15</div>
     </div>
   </div>
-  <div data-rise style="display:flex; align-items:stretch; gap:10px; margin-bottom:24px;">
-    <div onClick="{{ setAd0 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#f8fafd; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 1</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Clic «Entrar con ITCA»</div><sc-if value="{{ ad0 }}" hint-placeholder-val="{{ true }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
-    <div onClick="{{ setAd1 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#f8fafd; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 2</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Redirección a AD</div><sc-if value="{{ ad1 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
-    <div onClick="{{ setAd2 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#f8fafd; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 3</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Validación institucional</div><sc-if value="{{ ad2 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
-    <div onClick="{{ setAd3 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#f8fafd; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 4</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Identidad + grupos firmados</div><sc-if value="{{ ad3 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
-    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
-    <div onClick="{{ setAd4 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#f8fafd; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 5</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Permisos + JWT propio</div><sc-if value="{{ ad4 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
-  </div>
-  <div data-fade style="background:#f5f7fb; border:1px solid #e2e9f2; border-radius:18px; padding:30px 38px; display:flex; gap:26px; align-items:center; min-height:120px;">
-    <sc-if value="{{ ad0 }}" hint-placeholder-val="{{ true }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">1</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">El asesor pulsa «Iniciar sesión con ITCA»</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">En la pantalla de acceso al panel administrativo aparece un único botón institucional. No hay un formulario de usuario y contraseña propio de la plataforma.</p></div></div></sc-if>
-    <sc-if value="{{ ad1 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">2</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">La plataforma redirige a Active Directory</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">El navegador se envía al servidor de identidad del ITCA (Microsoft Entra ID o LDAP on-premise) para que sea él quien autentique al usuario.</p></div></div></sc-if>
-    <sc-if value="{{ ad2 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">3</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">AD valida la credencial institucional</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">El usuario escribe su credencial del ITCA, con MFA si está habilitado. <strong style="color:#0b1f33;">La plataforma nunca ve esa contraseña</strong> — todo ocurre dentro del dominio del ITCA.</p></div></div></sc-if>
-    <sc-if value="{{ ad3 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">4</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">AD devuelve identidad y grupos firmados</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">Django recibe un token firmado que afirma quién es la persona y a qué grupos del directorio pertenece. La firma garantiza que el dato no fue alterado.</p></div></div></sc-if>
-    <sc-if value="{{ ad4 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#1f9d6b; flex:none;">5</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">Mapea permisos y emite el JWT de la plataforma</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">Django traduce los grupos de AD a permisos internos, crea o actualiza el usuario y emite su propio JWT. A partir de aquí, el dashboard funciona igual que con un login normal.</p></div></div></sc-if>
-  </div>
-  <div data-rise style="margin-top:auto; background:#00366b; border-radius:16px; padding:26px 36px; display:flex; align-items:center; gap:22px;">
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff8a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-    <p style="margin:0; font-size:25px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">La plataforma nunca ve la contraseña del usuario.</strong> Solo recibe una afirmación firmada de Microsoft o LDAP de que «esta persona es quien dice ser y pertenece a estos grupos».</p>
+
+  <div data-rise style="margin-top:24px; background:#00366b; border-radius:16px; padding:24px 36px; display:flex; align-items:center; gap:22px;">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff8a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+    <p style="margin:0; font-size:24px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">Apego completo = el servidor vive dentro del dominio y el personal entra con su identidad institucional.</strong> Nada de NOVA —ni la IA, ni los datos de los aspirantes, ni las credenciales— vive fuera del ITCA.</p>
   </div>
 </section>
 
-<!-- ============ 14 · ACTIVE DIRECTORY · IMPLEMENTACIÓN ============ -->
-<section data-label="AD · Implementación" data-screen-label="14" data-speaker-notes="Antes de tocar código se piden al Depto. de IT del ITCA los datos de infraestructura. Dos rutas según lo que use el ITCA: Microsoft Entra ID con OpenID Connect (recomendada si ya usan Office 365) o LDAP on-premise. Backend con social-auth-app-django o django-auth-ldap; los secretos SIEMPRE van en .env, nunca en el repo ni en el front. El diseño soporta ambos cambiando solo el backend de Django. Los grupos de AD se mapean a permisos de la plataforma. Si no hay acceso al AD real para pruebas, un OpenLDAP en Docker simula el directorio y permite demostrar el flujo completo en la defensa." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<!-- ============ 14 · ACTIVE DIRECTORY · IDENTIDAD FEDERADA (FLUJO) ============ -->
+<section data-label="AD · Identidad" data-screen-label="14" data-speaker-notes="Capa 2, primer plano: cómo inicia sesión el personal del ITCA. Aclarar el alcance: solo el personal (asesores, orientadores, IT) pasa por este flujo para entrar al panel administrativo; los aspirantes y el público usan el chat y la voz de orientación de forma libre y anónima, sin cuenta ni contraseña. Recorrer el flujo de 5 pasos haciendo clic. Concepto: transicionamos de autenticación local a identidad federada — Django delega la verificación de credenciales al servidor de AD del ITCA (OIDC o LDAP) y solo emite su propio JWT tras la validación. Frase clave: NOVA nunca ve la contraseña; solo recibe una afirmación firmada de Microsoft o LDAP de que la persona es quien dice ser y pertenece a estos grupos." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:14px;">
       <svg width="44" height="44" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="13" fill="#00366b"></rect><rect x="30" y="30" width="22" height="22" rx="7" fill="#e8530e"></rect><text x="17" y="34" font-family="'Libre Franklin'" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">IT</text></svg>
@@ -437,51 +434,35 @@
     </div>
     <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.18em; color:#9aa9bd;">14 / 17</div>
   </div>
-  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 12px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">14 · IMPLEMENTACIÓN</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ elige la ruta del ITCA</span></div>
-  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:52px; line-height:1.04; margin:0 0 24px;">Dos rutas, un mismo backend de Django</h2>
-  <div data-rise style="display:flex; gap:14px; margin-bottom:26px;">
-    <div onClick="{{ setImplAzure }}" style="cursor:pointer; display:flex; align-items:center; gap:14px; padding:18px 28px; border-radius:14px; border:2px solid #0a59a6; background:{{ azureTabBg }}; color:{{ azureTabColor }};"><span style="font-size:22px;">☁️</span><div><div style="font-size:23px; font-weight:700;">Microsoft Entra ID</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; opacity:.8;">OPENID CONNECT · RECOMENDADA</div></div></div>
-    <div onClick="{{ setImplLdap }}" style="cursor:pointer; display:flex; align-items:center; gap:14px; padding:18px 28px; border-radius:14px; border:2px solid #c2cfde; background:{{ ldapTabBg }}; color:{{ ldapTabColor }};"><span style="font-size:22px;">🗄️</span><div><div style="font-size:23px; font-weight:700;">LDAP on-premise</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; opacity:.8;">SERVIDOR AD LOCAL</div></div></div>
+  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 12px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#1f9d6b;">14 · IDENTIDAD FEDERADA</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ flujo de acceso del personal</span></div>
+  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:50px; line-height:1.04; margin:0 0 12px;">Cómo inicia sesión el personal del ITCA</h2>
+  <p data-rise style="font-size:20px; line-height:1.5; color:#3d5163; margin:0 0 24px; max-width:1200px;">Django deja de verificar contraseñas y <strong style="color:#0b1f33;">delega la autenticación al directorio del ITCA</strong> (Microsoft Entra ID o LDAP). Solo emite su propio JWT cuando AD confirma la identidad. Haz clic en cada paso:</p>
+  <div data-rise style="display:flex; align-items:stretch; gap:10px; margin-bottom:24px;">
+    <div onClick="{{ setAd0 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 1</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Clic «Entrar con ITCA»</div><sc-if value="{{ ad0 }}" hint-placeholder-val="{{ true }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
+    <div onClick="{{ setAd1 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 2</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Redirección a AD</div><sc-if value="{{ ad1 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
+    <div onClick="{{ setAd2 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 3</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Validación institucional</div><sc-if value="{{ ad2 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
+    <div onClick="{{ setAd3 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 4</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Identidad + grupos firmados</div><sc-if value="{{ ad3 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px;">→</div>
+    <div onClick="{{ setAd4 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:20px 18px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 5</div><div style="font-size:20px; font-weight:700; margin-top:6px; line-height:1.2;">Permisos + JWT propio</div><sc-if value="{{ ad4 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:12px;"></div></sc-if></div>
   </div>
-  <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:34px; flex:1;">
-    <div data-fade style="background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:34px 36px; display:flex; flex-direction:column;">
-      <sc-if value="{{ implAzure }}" hint-placeholder-val="{{ true }}"><div style="display:flex; flex-direction:column; height:100%;">
-        <div style="font-size:24px; font-weight:700; margin-bottom:16px;">Requisitos a solicitar a IT</div>
-        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; background:#eef3fa; color:#0a59a6; padding:8px 14px; border-radius:8px;">Tenant ID</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; background:#eef3fa; color:#0a59a6; padding:8px 14px; border-radius:8px;">Client ID</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; background:#eef3fa; color:#0a59a6; padding:8px 14px; border-radius:8px;">Client Secret</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; background:#eef3fa; color:#0a59a6; padding:8px 14px; border-radius:8px;">Redirect URI</span></div>
-        <pre style="margin:0 0 auto; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.7; white-space:pre-wrap;">pip install social-auth-app-django
-
-AUTHENTICATION_BACKENDS = (
-  'social_core.backends.azuread.AzureADOAuth2',
-  'django.contrib.auth.backends.ModelBackend',
-)</pre>
-        <div style="margin-top:20px; font-size:19px; line-height:1.5; color:#5b6b80;">Ideal si el ITCA ya usa Office 365. Los secretos viven en <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace;">.env</strong>, nunca en el repositorio ni en el frontend.</div>
-      </div></sc-if>
-      <sc-if value="{{ implLdap }}" hint-placeholder-val="{{ false }}"><div style="display:flex; flex-direction:column; height:100%;">
-        <div style="font-size:24px; font-weight:700; margin-bottom:16px;">Requisitos a solicitar a IT</div>
-        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; background:#eef3fa; color:#0a59a6; padding:8px 14px; border-radius:8px;">IP / Hostname AD</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; background:#eef3fa; color:#0a59a6; padding:8px 14px; border-radius:8px;">Base DN</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; background:#eef3fa; color:#0a59a6; padding:8px 14px; border-radius:8px;">Cuenta de servicio (Bind)</span></div>
-        <pre style="margin:0 0 auto; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.7; white-space:pre-wrap;">pip install django-auth-ldap
-
-AUTH_LDAP_SERVER_URI = "ldap://10.0.0.5"
-AUTH_LDAP_USER_SEARCH = LDAPSearch(
-  "OU=Usuarios,DC=itca,DC=edu,DC=sv", ...)</pre>
-        <div style="margin-top:20px; font-size:19px; line-height:1.5; color:#5b6b80;">Para cuando el directorio vive on-premise en el ITCA. La cuenta de servicio solo realiza búsquedas en el árbol.</div>
-      </div></sc-if>
-    </div>
-    <div data-rise style="background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:34px 36px; display:flex; flex-direction:column;">
-      <div style="font-size:24px; font-weight:700; margin-bottom:6px;">Mapeo de grupos → permisos</div>
-      <div style="font-size:18px; color:#5b6b80; margin-bottom:22px;">Los grupos del directorio definen quién ve qué; no se administra dos veces.</div>
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div style="display:flex; align-items:center; gap:14px; background:#f1faf5; border:1px solid #c9ebd9; border-radius:12px; padding:18px 20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:600; color:#1f9d6b;">AD · Orientadores</span><span style="color:#1f9d6b; font-size:20px;">→</span><div style="line-height:1.25;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:700; color:#0b1f33;">is_staff</span><div style="font-size:16px; color:#5b6b80;">CRM, leads y agenda</div></div></div>
-        <div style="display:flex; align-items:center; gap:14px; background:#eef3fa; border:1px solid #cdddef; border-radius:12px; padding:18px 20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:600; color:#0a59a6;">AD · IT_Admin</span><span style="color:#0a59a6; font-size:20px;">→</span><div style="line-height:1.25;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:700; color:#0b1f33;">is_superuser</span><div style="font-size:16px; color:#5b6b80;">Configuración + control de servicios</div></div></div>
-        <div style="display:flex; align-items:center; gap:14px; background:#fdf2ee; border:1px solid #f3d4c6; border-radius:12px; padding:18px 20px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:600; color:#c0451c;">Sin grupo NOVA</span><span style="color:#c0451c; font-size:20px;">→</span><div style="line-height:1.25;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:700; color:#c0451c;">Acceso denegado</span><div style="font-size:16px; color:#5b6b80;">No se abre el dashboard</div></div></div>
-      </div>
-      <div style="margin-top:auto; display:flex; align-items:flex-start; gap:14px; background:#00366b; border-radius:12px; padding:20px 22px;"><span style="font-size:22px;">🐳</span><p style="margin:0; font-size:18px; line-height:1.5; color:#e8f0fb;"><strong style="color:#fff;">¿Sin AD real para pruebas?</strong> Un <span style="font-family:'IBM Plex Mono',monospace;">OpenLDAP</span> en Docker simula el directorio y permite demostrar el flujo completo en la defensa.</p></div>
-    </div>
+  <div data-fade style="background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:30px 38px; display:flex; gap:26px; align-items:center; min-height:120px;">
+    <sc-if value="{{ ad0 }}" hint-placeholder-val="{{ true }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">1</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">El asesor pulsa «Iniciar sesión con ITCA»</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">En la pantalla de acceso al panel administrativo aparece un único botón institucional. No hay un formulario de usuario y contraseña propio de la plataforma.</p></div></div></sc-if>
+    <sc-if value="{{ ad1 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">2</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">La plataforma redirige a Active Directory</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">El navegador se envía al servidor de identidad del ITCA (Microsoft Entra ID o LDAP on-premise) para que sea él quien autentique al usuario.</p></div></div></sc-if>
+    <sc-if value="{{ ad2 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">3</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">AD valida la credencial institucional</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">El usuario escribe su credencial del ITCA, con MFA si está habilitado. <strong style="color:#0b1f33;">La plataforma nunca ve esa contraseña</strong> — todo ocurre dentro del dominio del ITCA.</p></div></div></sc-if>
+    <sc-if value="{{ ad3 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#0a59a6; flex:none;">4</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">AD devuelve identidad y grupos firmados</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">Django recibe un token firmado que afirma quién es la persona y a qué grupos del directorio pertenece. La firma garantiza que el dato no fue alterado.</p></div></div></sc-if>
+    <sc-if value="{{ ad4 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:26px; align-items:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; color:#1f9d6b; flex:none;">5</div><div><div style="font-size:27px; font-weight:700; margin-bottom:6px;">Mapea permisos y emite el JWT de la plataforma</div><p style="font-size:22px; line-height:1.5; color:#5b6b80; margin:0;">Django traduce los grupos de AD a permisos internos, crea o actualiza el usuario y emite su propio JWT. A partir de aquí, el dashboard funciona igual que con un login normal.</p></div></div></sc-if>
+  </div>
+  <div data-rise style="margin-top:auto; background:#00366b; border-radius:16px; padding:24px 36px; display:flex; align-items:center; gap:22px;">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff8a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    <p style="margin:0; font-size:24px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">La plataforma nunca ve la contraseña del usuario.</strong> Solo recibe una afirmación firmada de Microsoft o LDAP de que «esta persona es quien dice ser y pertenece a estos grupos».</p>
   </div>
 </section>
 
-<!-- ============ 15 · ACTIVE DIRECTORY · BENEFICIOS Y SEGURIDAD ============ -->
-<section data-label="AD · Beneficios" data-screen-label="15" data-speaker-notes="Cerrar la sección de AD con el valor. Beneficios: SSO con la misma cuenta del ITCA, cero contraseñas guardadas, altas y bajas automáticas, trazabilidad y resiliencia. El modelo de amenazas antes vs después demuestra la mejora de seguridad. Esto cierra los gaps de Seguridad (G-07) y Privacidad/Ética (G-18). Preguntas frecuentes del sínodo: ¿La plataforma ve la contraseña? No, en OIDC el usuario se autentica directo contra Microsoft. ¿Si AD se cae? Hay un admin local de emergencia para continuidad. ¿LDAP o Azure? Según la infraestructura del ITCA. ¿Lo probaste? Sí, demostrable con OpenLDAP en Docker. ¿No es sobre-ingeniería? Es lo que separa un prototipo de una herramienta institucional." style="position:relative; width:100%; height:100%; background:#fff; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<!-- ============ 15 · ACTIVE DIRECTORY · IMPLEMENTACIÓN Y BENEFICIOS ============ -->
+<section data-label="AD · Implementación" data-screen-label="15" data-speaker-notes="Cómo se construye la capa de identidad y qué valor aporta. Antes de tocar código se piden al Depto. de IT los datos de infraestructura. Dos rutas según lo que use el ITCA: Microsoft Entra ID con OpenID Connect (recomendada si ya usan Office 365) o LDAP on-premise; el diseño soporta ambos cambiando solo el backend de Django, y los secretos SIEMPRE van en .env, nunca en el repo ni en el front. Los grupos de AD se mapean a permisos de la plataforma; sin grupo reconocido no hay acceso. Si no hay AD real para pruebas, un OpenLDAP en Docker simula el directorio y permite demostrar el flujo completo en la defensa. Cerrar con los beneficios: SSO, cero contraseñas guardadas, altas y bajas automáticas, y trazabilidad — esto cierra los gaps de Seguridad (G-07) y Privacidad/Ética (G-18)." style="position:relative; width:100%; height:100%; background:#fff; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:14px;">
       <svg width="44" height="44" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="13" fill="#00366b"></rect><rect x="30" y="30" width="22" height="22" rx="7" fill="#e8530e"></rect><text x="17" y="34" font-family="'Libre Franklin'" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">IT</text></svg>
@@ -489,40 +470,57 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch(
     </div>
     <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.18em; color:#9aa9bd;">15 / 17</div>
   </div>
-  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 12px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#1f9d6b;">15 · BENEFICIOS Y SEGURIDAD</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ compara antes / después</span></div>
-  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:52px; line-height:1.04; margin:0 0 28px;">De prototipo aislado a herramienta institucional</h2>
-  <div style="display:grid; grid-template-columns:1fr 1.15fr; gap:38px; flex:1;">
-    <div style="display:flex; flex-direction:column; gap:14px;">
-      <div data-rise style="animation-delay:.04s; display:flex; gap:18px; align-items:flex-start; background:#f8fafd; border:1px solid #e2e9f2; border-radius:14px; padding:22px 26px;"><span style="color:#1f9d6b; font-size:24px; line-height:1;">✓</span><div><div style="font-size:23px; font-weight:700;">SSO institucional</div><div style="font-size:19px; line-height:1.45; color:#5b6b80;">El asesor usa la misma cuenta del ITCA: cero contraseñas nuevas que recordar.</div></div></div>
-      <div data-rise style="animation-delay:.10s; display:flex; gap:18px; align-items:flex-start; background:#f8fafd; border:1px solid #e2e9f2; border-radius:14px; padding:22px 26px;"><span style="color:#1f9d6b; font-size:24px; line-height:1;">✓</span><div><div style="font-size:23px; font-weight:700;">Cero contraseñas guardadas</div><div style="font-size:19px; line-height:1.45; color:#5b6b80;">Se elimina el riesgo de fuga de credenciales desde nuestra base de datos.</div></div></div>
-      <div data-rise style="animation-delay:.16s; display:flex; gap:18px; align-items:flex-start; background:#f8fafd; border:1px solid #e2e9f2; border-radius:14px; padding:22px 26px;"><span style="color:#1f9d6b; font-size:24px; line-height:1;">✓</span><div><div style="font-size:23px; font-weight:700;">Altas y bajas automáticas</div><div style="font-size:19px; line-height:1.45; color:#5b6b80;">Si IT desactiva a un empleado en AD, pierde el acceso a la plataforma al instante.</div></div></div>
-      <div data-rise style="animation-delay:.22s; display:flex; gap:18px; align-items:flex-start; background:#f8fafd; border:1px solid #e2e9f2; border-radius:14px; padding:22px 26px;"><span style="color:#1f9d6b; font-size:24px; line-height:1;">✓</span><div><div style="font-size:23px; font-weight:700;">Trazabilidad y resiliencia</div><div style="font-size:19px; line-height:1.45; color:#5b6b80;">Cada acceso queda atado a una identidad real; un admin local de emergencia da continuidad si AD cae.</div></div></div>
+  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 12px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">15 · IMPLEMENTACIÓN</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ elige la ruta del ITCA</span></div>
+  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:48px; line-height:1.04; margin:0 0 18px;">Dos rutas, un mismo backend de Django</h2>
+  <div data-rise style="display:flex; gap:14px; margin-bottom:20px;">
+    <div onClick="{{ setImplAzure }}" style="cursor:pointer; display:flex; align-items:center; gap:14px; padding:16px 26px; border-radius:14px; border:2px solid #0a59a6; background:{{ azureTabBg }}; color:{{ azureTabColor }};"><span style="font-size:22px;">☁️</span><div><div style="font-size:22px; font-weight:700;">Microsoft Entra ID</div><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; opacity:.8;">OPENID CONNECT · RECOMENDADA</div></div></div>
+    <div onClick="{{ setImplLdap }}" style="cursor:pointer; display:flex; align-items:center; gap:14px; padding:16px 26px; border-radius:14px; border:2px solid #c2cfde; background:{{ ldapTabBg }}; color:{{ ldapTabColor }};"><span style="font-size:22px;">🗄️</span><div><div style="font-size:22px; font-weight:700;">LDAP on-premise</div><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; opacity:.8;">SERVIDOR AD LOCAL</div></div></div>
+  </div>
+  <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:30px; flex:1; min-height:0;">
+    <div data-fade style="background:#f8fafd; border:1px solid #e2e9f2; border-radius:18px; padding:28px 32px; display:flex; flex-direction:column;">
+      <sc-if value="{{ implAzure }}" hint-placeholder-val="{{ true }}"><div style="display:flex; flex-direction:column; height:100%;">
+        <div style="font-size:22px; font-weight:700; margin-bottom:14px;">Requisitos a solicitar a IT</div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; background:#eef3fa; color:#0a59a6; padding:7px 13px; border-radius:8px;">Tenant ID</span><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; background:#eef3fa; color:#0a59a6; padding:7px 13px; border-radius:8px;">Client ID</span><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; background:#eef3fa; color:#0a59a6; padding:7px 13px; border-radius:8px;">Client Secret</span><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; background:#eef3fa; color:#0a59a6; padding:7px 13px; border-radius:8px;">Redirect URI</span></div>
+        <pre style="margin:0 0 auto; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:20px 22px; font-family:'IBM Plex Mono',monospace; font-size:15px; line-height:1.7; white-space:pre-wrap;">pip install social-auth-app-django
+
+AUTHENTICATION_BACKENDS = (
+  'social_core.backends.azuread.AzureADOAuth2',
+  'django.contrib.auth.backends.ModelBackend',
+)</pre>
+        <div style="margin-top:16px; font-size:18px; line-height:1.5; color:#5b6b80;">Ideal si el ITCA ya usa Office 365. Los secretos viven en <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace;">.env</strong>, nunca en el repositorio ni en el frontend.</div>
+      </div></sc-if>
+      <sc-if value="{{ implLdap }}" hint-placeholder-val="{{ false }}"><div style="display:flex; flex-direction:column; height:100%;">
+        <div style="font-size:22px; font-weight:700; margin-bottom:14px;">Requisitos a solicitar a IT</div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; background:#eef3fa; color:#0a59a6; padding:7px 13px; border-radius:8px;">IP / Hostname AD</span><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; background:#eef3fa; color:#0a59a6; padding:7px 13px; border-radius:8px;">Base DN</span><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; background:#eef3fa; color:#0a59a6; padding:7px 13px; border-radius:8px;">Cuenta de servicio (Bind)</span></div>
+        <pre style="margin:0 0 auto; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:20px 22px; font-family:'IBM Plex Mono',monospace; font-size:15px; line-height:1.7; white-space:pre-wrap;">pip install django-auth-ldap
+
+AUTH_LDAP_SERVER_URI = "ldap://10.0.0.5"
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+  "OU=Usuarios,DC=itca,DC=edu,DC=sv", ...)</pre>
+        <div style="margin-top:16px; font-size:18px; line-height:1.5; color:#5b6b80;">Para cuando el directorio vive on-premise en el ITCA. La cuenta de servicio solo realiza búsquedas en el árbol.</div>
+      </div></sc-if>
     </div>
-    <div data-rise style="background:#0b1f33; border-radius:20px; padding:34px 38px; display:flex; flex-direction:column; color:#fff;">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:16px; letter-spacing:.16em; color:#9dc0e6;">MODELO DE AMENAZAS</div>
-        <div style="display:flex; background:rgba(255,255,255,.08); border-radius:999px; padding:5px;"><div onClick="{{ setThreatAntes }}" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; padding:9px 20px; border-radius:999px; background:{{ antesBg }}; color:{{ antesColor }};">ANTES</div><div onClick="{{ setThreatCon }}" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; padding:9px 20px; border-radius:999px; background:{{ conBg }}; color:{{ conColor }};">CON AD</div></div>
+    <div data-rise style="background:#f8fafd; border:1px solid #e2e9f2; border-radius:18px; padding:28px 32px; display:flex; flex-direction:column;">
+      <div style="font-size:22px; font-weight:700; margin-bottom:4px;">Mapeo de grupos → permisos</div>
+      <div style="font-size:17px; color:#5b6b80; margin-bottom:18px;">Los grupos del directorio definen quién ve qué; no se administra dos veces.</div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; gap:14px; background:#f1faf5; border:1px solid #c9ebd9; border-radius:12px; padding:15px 18px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; color:#1f9d6b;">AD · Orientadores</span><span style="color:#1f9d6b; font-size:20px;">→</span><div style="line-height:1.25;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; color:#0b1f33;">is_staff</span><div style="font-size:15px; color:#5b6b80;">CRM, leads y agenda</div></div></div>
+        <div style="display:flex; align-items:center; gap:14px; background:#eef3fa; border:1px solid #cdddef; border-radius:12px; padding:15px 18px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; color:#0a59a6;">AD · IT_Admin</span><span style="color:#0a59a6; font-size:20px;">→</span><div style="line-height:1.25;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; color:#0b1f33;">is_superuser</span><div style="font-size:15px; color:#5b6b80;">Configuración + control de servicios</div></div></div>
+        <div style="display:flex; align-items:center; gap:14px; background:#fdf2ee; border:1px solid #f3d4c6; border-radius:12px; padding:15px 18px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; color:#c0451c;">Sin grupo NOVA</span><span style="color:#c0451c; font-size:20px;">→</span><div style="line-height:1.25;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; color:#c0451c;">Acceso denegado</span><div style="font-size:15px; color:#5b6b80;">No se abre el dashboard</div></div></div>
       </div>
-      <sc-if value="{{ threatAntes }}" hint-placeholder-val="{{ false }}"><div style="display:flex; flex-direction:column; gap:16px;">
-        <div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:28px; color:#ff8a52;">Autenticación local · hoy</div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#ff8a52; font-size:20px;">✕</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">La plataforma guarda los hashes de las contraseñas.</p></div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#ff8a52; font-size:20px;">✕</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">Un empleado dado de baja sigue entrando: la revocación es manual y se olvida.</p></div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#ff8a52; font-size:20px;">✕</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">El acceso al CRM está protegido solo por una contraseña local.</p></div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#ff8a52; font-size:20px;">✕</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">Auditoría difícil: ¿quién leyó los datos de un aspirante?</p></div>
-      </div></sc-if>
-      <sc-if value="{{ threatCon }}" hint-placeholder-val="{{ true }}"><div style="display:flex; flex-direction:column; gap:16px;">
-        <div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:28px; color:#7fe3b8;">Con Active Directory</div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#7fe3b8; font-size:20px;">✓</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">La plataforma no guarda ninguna contraseña.</p></div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#7fe3b8; font-size:20px;">✓</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">Baja en AD = acceso revocado de forma automática e inmediata.</p></div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#7fe3b8; font-size:20px;">✓</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">MFA institucional + permisos asignados por grupos.</p></div>
-        <div style="display:flex; gap:14px; align-items:flex-start;"><span style="color:#7fe3b8; font-size:20px;">✓</span><p style="margin:0; font-size:20px; line-height:1.45; color:#cfe0f2;">Identidad federada: cada acceso a datos es trazable.</p></div>
-      </div></sc-if>
+      <div style="margin-top:auto; display:flex; align-items:flex-start; gap:14px; background:#00366b; border-radius:12px; padding:16px 20px;"><span style="font-size:22px;">🐳</span><p style="margin:0; font-size:17px; line-height:1.5; color:#e8f0fb;"><strong style="color:#fff;">¿Sin AD real para pruebas?</strong> Un <span style="font-family:'IBM Plex Mono',monospace;">OpenLDAP</span> en Docker simula el directorio y permite demostrar el flujo completo en la defensa.</p></div>
     </div>
+  </div>
+  <div data-rise style="margin-top:22px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
+    <div style="display:flex; gap:12px; align-items:flex-start; background:#f1faf5; border:1px solid #c9ebd9; border-radius:12px; padding:16px 18px;"><span style="color:#1f9d6b; font-size:20px; line-height:1;">✓</span><div><div style="font-size:18px; font-weight:700;">SSO institucional</div><div style="font-size:15px; color:#5b6b80; line-height:1.35;">La misma cuenta del ITCA; cero contraseñas nuevas.</div></div></div>
+    <div style="display:flex; gap:12px; align-items:flex-start; background:#f1faf5; border:1px solid #c9ebd9; border-radius:12px; padding:16px 18px;"><span style="color:#1f9d6b; font-size:20px; line-height:1;">✓</span><div><div style="font-size:18px; font-weight:700;">Cero contraseñas</div><div style="font-size:15px; color:#5b6b80; line-height:1.35;">NOVA no guarda hashes; sin riesgo de fuga.</div></div></div>
+    <div style="display:flex; gap:12px; align-items:flex-start; background:#f1faf5; border:1px solid #c9ebd9; border-radius:12px; padding:16px 18px;"><span style="color:#1f9d6b; font-size:20px; line-height:1;">✓</span><div><div style="font-size:18px; font-weight:700;">Altas/bajas auto</div><div style="font-size:15px; color:#5b6b80; line-height:1.35;">Baja en AD = acceso revocado al instante.</div></div></div>
+    <div style="display:flex; gap:12px; align-items:flex-start; background:#f1faf5; border:1px solid #c9ebd9; border-radius:12px; padding:16px 18px;"><span style="color:#1f9d6b; font-size:20px; line-height:1;">✓</span><div><div style="font-size:18px; font-weight:700;">Trazabilidad</div><div style="font-size:15px; color:#5b6b80; line-height:1.35;">Cada acceso atado a una identidad real.</div></div></div>
   </div>
 </section>
 
 <!-- ============ 16 · ACTIVE DIRECTORY · DESPLIEGUE EN SERVIDOR ============ -->
-<section data-label="AD · Despliegue" data-screen-label="16" data-speaker-notes="Cerrar la sección de AD mostrando dónde vive la plataforma. La idea en una frase: el servidor de NOVA es un miembro más del dominio del ITCA, igual que cualquier equipo del personal. Recorrer los 5 pasos del despliegue: (1) Un servidor propio del ITCA con GPU. (2) Se une al dominio de Active Directory con un solo comando (realm join), igual que se da de alta cualquier computadora institucional. (3) IT entrega una cuenta de servicio de AD y las claves quedan en el archivo .env, nunca en el código. (4) Se instala NOVA: la IA y la base de datos viven en el disco propio del servidor. (5) Los servicios arrancan solos al prender el servidor, publicados con el certificado HTTPS del ITCA. Cerrar con la frase clave: la IA, los datos de los aspirantes y la identidad viven TODO dentro de la red del ITCA; nada sale a la nube. Esto es lo que separa un prototipo de una herramienta institucional." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<section data-label="AD · Despliegue" data-screen-label="16" data-speaker-notes="Capa 1 en detalle: dónde y cómo vive el servidor. La idea en una frase: el servidor de NOVA es un miembro más del dominio del ITCA, igual que cualquier equipo del personal. Recorrer los 5 pasos haciendo clic, mostrando el comando o la acción concreta de cada uno: (1) Servidor propio del ITCA con GPU NVIDIA, disco persistente y Ubuntu Server — nada en la nube. (2) Se une al dominio con un solo comando, realm join, tras sincronizar el reloj con el NTP del dominio (Kerberos lo exige). (3) IT entrega una cuenta de servicio de AD y las claves quedan en el archivo .env con permisos 600, nunca en el código. (4) Se instala NOVA como servicios systemd (Django, frontend, Ollama sobre la GPU, voz); la IA, la base de datos y los modelos viven en el disco persistente del servidor. (5) Nginx publica el sitio con el certificado HTTPS del ITCA y systemctl enable hace que todo arranque solo tras un reinicio. Cerrar: la IA, los datos de los aspirantes y la identidad viven TODO dentro de la red del ITCA; nada sale a la nube. Mientras IT entrega la cuenta de unión, un OpenLDAP en Docker permite ensayar el flujo." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:14px;">
       <svg width="44" height="44" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="13" fill="#00366b"></rect><rect x="30" y="30" width="22" height="22" rx="7" fill="#e8530e"></rect><text x="17" y="34" font-family="'Libre Franklin'" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">IT</text></svg>
@@ -531,69 +529,61 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch(
     <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.18em; color:#9aa9bd;">16 / 17</div>
   </div>
   <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 12px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">16 · DESPLIEGUE EN SERVIDOR</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ el servidor es miembro del dominio</span></div>
-  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:52px; line-height:1.04; margin:0 0 34px;">El servidor de NOVA vive <span style="color:#0a59a6;">dentro del dominio</span> del ITCA</h2>
-
-  <div data-rise style="display:flex; align-items:stretch; gap:12px; flex:1;">
-
-    <!-- Paso 1 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:30px 24px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-        <span style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; color:#cdddef; line-height:1;">1</span>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1.5"></rect><rect x="2" y="15" width="20" height="6" rx="1.5"></rect><line x1="6" y1="6" x2="6" y2="6"></line><line x1="6" y1="18" x2="6" y2="18"></line></svg>
-      </div>
-      <div style="font-size:23px; font-weight:700; line-height:1.2; margin-bottom:8px;">Servidor propio</div>
-      <div style="font-size:18px; line-height:1.45; color:#5b6b80;">Un equipo del ITCA con GPU NVIDIA. Nada en la nube.</div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:26px;">→</div>
-
-    <!-- Paso 2 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:30px 24px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-        <span style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; color:#cdddef; line-height:1;">2</span>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"></path></svg>
-      </div>
-      <div style="font-size:23px; font-weight:700; line-height:1.2; margin-bottom:8px;">Unido al dominio</div>
-      <div style="font-size:18px; line-height:1.45; color:#5b6b80;">Se da de alta en Active Directory con <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:16px;">realm join</strong>, como cualquier equipo.</div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:26px;">→</div>
-
-    <!-- Paso 3 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:30px 24px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-        <span style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; color:#cdddef; line-height:1;">3</span>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="M10.5 12.5 21 2"></path><path d="M16 7l3 3"></path><path d="M19 4l2 2"></path></svg>
-      </div>
-      <div style="font-size:23px; font-weight:700; line-height:1.2; margin-bottom:8px;">Identidad y claves</div>
-      <div style="font-size:18px; line-height:1.45; color:#5b6b80;">Cuenta de servicio de AD; secretos en <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:16px;">.env</strong>, nunca en el código.</div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:26px;">→</div>
-
-    <!-- Paso 4 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:30px 24px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-        <span style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; color:#cdddef; line-height:1;">4</span>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
-      </div>
-      <div style="font-size:23px; font-weight:700; line-height:1.2; margin-bottom:8px;">NOVA instalada</div>
-      <div style="font-size:18px; line-height:1.45; color:#5b6b80;">La IA y la base de datos viven en el disco propio del servidor.</div>
-    </div>
-    <div style="align-self:center; color:#c2cfde; font-size:26px;">→</div>
-
-    <!-- Paso 5 -->
-    <div style="flex:1; display:flex; flex-direction:column; background:#f1faf5; border:1px solid #c9ebd9; border-radius:18px; padding:30px 24px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-        <span style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; color:#bfe6d2; line-height:1;">5</span>
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1f9d6b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"></path><path d="M18.4 6.6a9 9 0 1 1-12.8 0"></path></svg>
-      </div>
-      <div style="font-size:23px; font-weight:700; line-height:1.2; margin-bottom:8px;">Arranca sola</div>
-      <div style="font-size:18px; line-height:1.45; color:#5b6b80;">Los servicios suben solos al prender, con el HTTPS del ITCA.</div>
-    </div>
-
+  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:48px; line-height:1.04; margin:0 0 18px;">El servidor de NOVA vive <span style="color:#0a59a6;">dentro del dominio</span> del ITCA</h2>
+  <div data-rise style="display:flex; align-items:stretch; gap:10px; margin-bottom:22px;">
+    <div onClick="{{ setDep0 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:18px 16px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#0a59a6;">PASO 1</div><div style="font-size:18px; font-weight:700; margin-top:6px; line-height:1.2;">Servidor propio</div><sc-if value="{{ dep0 }}" hint-placeholder-val="{{ true }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:10px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:22px;">→</div>
+    <div onClick="{{ setDep1 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:18px 16px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#0a59a6;">PASO 2</div><div style="font-size:18px; font-weight:700; margin-top:6px; line-height:1.2;">Unido al dominio</div><sc-if value="{{ dep1 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:10px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:22px;">→</div>
+    <div onClick="{{ setDep2 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:18px 16px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#0a59a6;">PASO 3</div><div style="font-size:18px; font-weight:700; margin-top:6px; line-height:1.2;">Identidad y claves</div><sc-if value="{{ dep2 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:10px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:22px;">→</div>
+    <div onClick="{{ setDep3 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:18px 16px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#0a59a6;">PASO 4</div><div style="font-size:18px; font-weight:700; margin-top:6px; line-height:1.2;">NOVA instalada</div><sc-if value="{{ dep3 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:10px;"></div></sc-if></div>
+    <div style="align-self:center; color:#c2cfde; font-size:22px;">→</div>
+    <div onClick="{{ setDep4 }}" style="cursor:pointer; flex:1; border-radius:14px; padding:18px 16px; background:#fff; border:2px solid #d9e1ee;"><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#0a59a6;">PASO 5</div><div style="font-size:18px; font-weight:700; margin-top:6px; line-height:1.2;">Arranca sola</div><sc-if value="{{ dep4 }}" hint-placeholder-val="{{ false }}"><div style="height:4px; background:#e8530e; border-radius:4px; margin-top:10px;"></div></sc-if></div>
   </div>
+  <div data-fade style="background:#fff; border:1px solid #e2e9f2; border-radius:18px; padding:28px 34px; display:grid; grid-template-columns:1.1fr 1fr; gap:30px; align-items:center; flex:1; min-height:0;">
+    <sc-if value="{{ dep0 }}" hint-placeholder-val="{{ true }}"><div style="display:flex; gap:24px; align-items:flex-start;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:54px; color:#0a59a6; flex:none; line-height:1;">1</div><div><div style="font-size:26px; font-weight:700; margin-bottom:8px;">Un servidor propio del ITCA</div><p style="font-size:20px; line-height:1.5; color:#5b6b80; margin:0 0 14px;">Una máquina dentro de la institución, <strong style="color:#0b1f33;">no en la nube</strong>. Replica el entorno ya probado: GPU para la IA, disco persistente para que los datos no se pierdan al reiniciar, y Ubuntu Server.</p><div style="display:flex; flex-wrap:wrap; gap:8px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#eef3fa; color:#0a59a6; padding:7px 12px; border-radius:8px;">GPU NVIDIA</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#eef3fa; color:#0a59a6; padding:7px 12px; border-radius:8px;">disco ≥ 200 GB</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#eef3fa; color:#0a59a6; padding:7px 12px; border-radius:8px;">RAM ≥ 32 GB</span><span style="font-family:'IBM Plex Mono',monospace; font-size:15px; background:#eef3fa; color:#0a59a6; padding:7px 12px; border-radius:8px;">Ubuntu Server LTS</span></div></div></div></sc-if>
+    <sc-if value="{{ dep0 }}" hint-placeholder-val="{{ true }}"><pre style="margin:0; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.8; white-space:pre-wrap;"># requisitos a IT
+- Servidor con GPU NVIDIA
+- Disco persistente (no efímero)
+- IP estática + hostname
 
-  <div data-rise style="margin-top:34px; background:#00366b; border-radius:16px; padding:26px 36px; display:flex; align-items:center; gap:22px;">
+nvidia-smi   # verificar GPU</pre></sc-if>
+
+    <sc-if value="{{ dep1 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:24px; align-items:flex-start;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:54px; color:#0a59a6; flex:none; line-height:1;">2</div><div><div style="font-size:26px; font-weight:700; margin-bottom:8px;">Se une al dominio de Active Directory</div><p style="font-size:20px; line-height:1.5; color:#5b6b80; margin:0;">Con <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace;">realm join</strong> el servidor se da de alta en el dominio, igual que cualquier computadora institucional. A partir de ahí es un <strong style="color:#0b1f33;">miembro confiable</strong>: DNS interno, Kerberos y auditoría. Antes hay que sincronizar el reloj con el NTP del dominio.</p></div></div></sc-if>
+    <sc-if value="{{ dep1 }}" hint-placeholder-val="{{ false }}"><pre style="margin:0; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.8; white-space:pre-wrap;">sudo apt install realmd sssd \
+  adcli krb5-user
+
+realm discover itca.edu.sv
+sudo realm join \
+  --user=&lt;join&gt; itca.edu.sv
+realm list   # verificar</pre></sc-if>
+
+    <sc-if value="{{ dep2 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:24px; align-items:flex-start;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:54px; color:#0a59a6; flex:none; line-height:1;">3</div><div><div style="font-size:26px; font-weight:700; margin-bottom:8px;">Identidad de servicio y secretos</div><p style="font-size:20px; line-height:1.5; color:#5b6b80; margin:0;">IT entrega una <strong style="color:#0b1f33;">cuenta de servicio de AD</strong> (gMSA) que NOVA usa para consultar grupos. Las credenciales viven solo en el archivo <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace;">.env</strong> con permisos <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace;">600</strong> — <strong style="color:#c0451c;">nunca en el código ni en el frontend</strong>.</p></div></div></sc-if>
+    <sc-if value="{{ dep2 }}" hint-placeholder-val="{{ false }}"><pre style="margin:0; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.8; white-space:pre-wrap;"># /opt/nova/.env  (chmod 600)
+AZURE_CLIENT_ID=...
+AZURE_CLIENT_SECRET=...
+AZURE_TENANT_ID=...
+
+chmod 600 /opt/nova/.env</pre></sc-if>
+
+    <sc-if value="{{ dep3 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:24px; align-items:flex-start;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:54px; color:#0a59a6; flex:none; line-height:1;">4</div><div><div style="font-size:26px; font-weight:700; margin-bottom:8px;">Se instala NOVA como servicios</div><p style="font-size:20px; line-height:1.5; color:#5b6b80; margin:0;">Cada parte corre como un servicio <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace;">systemd</strong>: Django, el frontend, Ollama sobre la GPU y la voz. La <strong style="color:#0b1f33;">IA, la base de datos y los modelos viven en el disco persistente</strong> del servidor — nada externo.</p></div></div></sc-if>
+    <sc-if value="{{ dep3 }}" hint-placeholder-val="{{ false }}"><pre style="margin:0; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.8; white-space:pre-wrap;">systemctl status \
+  nova-django nova-front \
+  ollama nova-pipecat
+
+# modelo 12b en GPU (prod)</pre></sc-if>
+
+    <sc-if value="{{ dep4 }}" hint-placeholder-val="{{ false }}"><div style="display:flex; gap:24px; align-items:flex-start;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:54px; color:#1f9d6b; flex:none; line-height:1;">5</div><div><div style="font-size:26px; font-weight:700; margin-bottom:8px;">Se publica y arranca sola</div><p style="font-size:20px; line-height:1.5; color:#5b6b80; margin:0;">Nginx publica el sitio con el <strong style="color:#0b1f33;">certificado HTTPS del ITCA</strong> en su DNS interno. Con <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace;">systemctl enable</strong> todos los servicios <strong style="color:#1f8a5b;">levantan solos</strong> tras un reinicio del servidor.</p></div></div></sc-if>
+    <sc-if value="{{ dep4 }}" hint-placeholder-val="{{ false }}"><pre style="margin:0; background:#0b1f33; color:#cfe0f2; border-radius:12px; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.8; white-space:pre-wrap;">systemctl enable --now \
+  nova-django nova-front \
+  ollama nova-pipecat nginx
+
+# https://nova.itca.edu.sv</pre></sc-if>
+  </div>
+  <div data-rise style="margin-top:22px; background:#00366b; border-radius:16px; padding:22px 36px; display:flex; align-items:center; gap:22px;">
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff8a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-    <p style="margin:0; font-size:25px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">Todo dentro de la red del ITCA:</strong> la IA, los datos de los aspirantes y la identidad. Nada vive fuera de la institución.</p>
+    <p style="margin:0; font-size:24px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">Todo dentro de la red del ITCA:</strong> la IA, los datos de los aspirantes y la identidad. Nada vive fuera de la institución.</p>
   </div>
 </section>
 
@@ -620,6 +610,7 @@ class Component extends DCLogic {
     arq: 'ia',
     rag: 0,
     ad: 0,
+    dep: 0,
     impl: 'azure',
     infra: 'cloud',
     threat: 'con',
@@ -741,6 +732,13 @@ class Component extends DCLogic {
       setAd3: () => this.setState({ ad: 3 }),
       setAd4: () => this.setState({ ad: 4 }),
       ad0: s.ad === 0, ad1: s.ad === 1, ad2: s.ad === 2, ad3: s.ad === 3, ad4: s.ad === 4,
+      // active directory · despliegue
+      setDep0: () => this.setState({ dep: 0 }),
+      setDep1: () => this.setState({ dep: 1 }),
+      setDep2: () => this.setState({ dep: 2 }),
+      setDep3: () => this.setState({ dep: 3 }),
+      setDep4: () => this.setState({ dep: 4 }),
+      dep0: s.dep === 0, dep1: s.dep === 1, dep2: s.dep === 2, dep3: s.dep === 3, dep4: s.dep === 4,
       // active directory · implementación
       setImplAzure: () => this.setState({ impl: 'azure' }),
       setImplLdap: () => this.setState({ impl: 'ldap' }),
