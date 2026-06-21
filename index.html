@@ -520,7 +520,7 @@
 </section>
 
 <!-- ============ 16 · ACTIVE DIRECTORY · DESPLIEGUE EN SERVIDOR ============ -->
-<section data-label="AD · Despliegue" data-screen-label="16" data-speaker-notes="Cómo se despliega NOVA en el servidor del ITCA, mostrado como una secuencia visual de cinco pasos a la izquierda y, a la derecha, el resultado: el servidor de NOVA dentro del dominio del ITCA. La secuencia: (1) Preparar el servidor — un equipo del ITCA con tarjeta gráfica y disco propio, con Ubuntu Server. (2) Unir al dominio — se une a Active Directory con la cuenta que entrega IT y queda registrado como un equipo más. (3) Cargar las claves — IT entrega la cuenta de servicio y se guarda en un archivo protegido del servidor. (4) Instalar NOVA — la IA, la web, la voz y la base de datos quedan corriendo como servicios, todo en el disco propio. (5) Publicar y arrancar — se activa el HTTPS del ITCA y el arranque automático. El diagrama de la derecha muestra que el servidor queda como un miembro del dominio del ITCA, con la IA, los datos y la identidad adentro, publicando solo HTTPS hacia el personal. Cierre: nada vive fuera de la institución." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<section data-label="AD · Despliegue" data-screen-label="16" data-speaker-notes="Cómo se despliega NOVA en el servidor del ITCA, en cinco pasos concretos y en una sola vista. Paso 1, preparar el servidor: un equipo del ITCA con tarjeta gráfica, instalar Ubuntu Server y dejar un disco propio para los datos. Paso 2, unir al dominio: pedir a IT la cuenta de unión y ejecutar la unión a Active Directory; el servidor queda registrado como un equipo más. Paso 3, cargar las llaves: IT entrega la cuenta de servicio y se guarda en el archivo .env del servidor, con permisos protegidos, nunca en el código. Paso 4, instalar NOVA: copiar la aplicación y levantar la IA, la web, la voz y la base de datos como servicios del sistema. Paso 5, publicar: activar el certificado HTTPS del ITCA y el arranque automático, y queda disponible en el DNS interno. Cierre: la IA, los datos y la identidad viven dentro de la institución; nada sale a la nube." style="position:relative; width:100%; height:100%; background:#f5f7fb; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:14px;">
       <svg width="44" height="44" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="13" fill="#00366b"></rect><rect x="30" y="30" width="22" height="22" rx="7" fill="#e8530e"></rect><text x="17" y="34" font-family="'Libre Franklin'" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">IT</text></svg>
@@ -528,77 +528,75 @@
     </div>
     <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.18em; color:#9aa9bd;">16 / 17</div>
   </div>
-  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 10px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">16 · DESPLIEGUE EN SERVIDOR</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ paso a paso, dentro del dominio</span></div>
-  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; line-height:1.04; margin:0 0 24px;">Cómo se despliega en el servidor del ITCA</h2>
+  <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 8px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#0a59a6;">16 · DESPLIEGUE EN SERVIDOR</span><span style="font-family:'IBM Plex Mono',monospace; font-size:17px; color:#9aa9bd;">▸ 5 pasos, dentro del dominio</span></div>
+  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:46px; line-height:1.04; margin:0 0 26px;">Cómo se despliega en el servidor del ITCA</h2>
 
-  <div style="display:grid; grid-template-columns:1.15fr 1fr; gap:46px; flex:1; min-height:0;">
+  <div data-rise style="display:flex; align-items:stretch; gap:8px; flex:1; min-height:0;">
 
-    <!-- Timeline -->
-    <div data-rise style="display:flex; flex-direction:column;">
-      <div style="display:flex; gap:20px;">
-        <div style="display:flex; flex-direction:column; align-items:center; flex:none;">
-          <div style="width:52px; height:52px; border-radius:50%; background:#0a59a6; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1.5"></rect><rect x="2" y="15" width="20" height="6" rx="1.5"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
-          <div style="width:3px; flex:1; background:#cdddef; margin:6px 0;"></div>
-        </div>
-        <div style="padding-bottom:20px;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 1</span><span style="font-size:23px; font-weight:700;">Preparar el servidor</span></div><div style="font-size:18px; color:#5b6b80; line-height:1.4; margin-top:2px;">Equipo del ITCA con tarjeta gráfica y disco propio, con Ubuntu Server.</div></div>
+    <!-- 1 -->
+    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">1</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1.5"></rect><rect x="2" y="15" width="20" height="6" rx="1.5"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Preparar el servidor</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Equipo del ITCA con <strong style="color:#0b1f33;">tarjeta gráfica (GPU)</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Instalar <strong style="color:#0b1f33;">Ubuntu Server</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Disco propio para los <strong style="color:#0b1f33;">datos</strong></span></div>
       </div>
-      <div style="display:flex; gap:20px;">
-        <div style="display:flex; flex-direction:column; align-items:center; flex:none;">
-          <div style="width:52px; height:52px; border-radius:50%; background:#0a59a6; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"></path></svg></div>
-          <div style="width:3px; flex:1; background:#cdddef; margin:6px 0;"></div>
-        </div>
-        <div style="padding-bottom:20px;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 2</span><span style="font-size:23px; font-weight:700;">Unir al dominio</span></div><div style="font-size:18px; color:#5b6b80; line-height:1.4; margin-top:2px;">Se une a Active Directory con la cuenta de IT: queda registrado como un equipo más.</div></div>
+    </div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
+
+    <!-- 2 -->
+    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">2</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"></path></svg></div>
+      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Unir al dominio</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Pedir a IT la <strong style="color:#0b1f33;">cuenta de unión</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Ejecutar la unión a <strong style="color:#0b1f33;">Active Directory</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Queda <strong style="color:#0b1f33;">registrado como un equipo más</strong></span></div>
       </div>
-      <div style="display:flex; gap:20px;">
-        <div style="display:flex; flex-direction:column; align-items:center; flex:none;">
-          <div style="width:52px; height:52px; border-radius:50%; background:#0a59a6; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="M10.5 12.5 21 2"></path><path d="M16 7l3 3"></path></svg></div>
-          <div style="width:3px; flex:1; background:#cdddef; margin:6px 0;"></div>
-        </div>
-        <div style="padding-bottom:20px;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 3</span><span style="font-size:23px; font-weight:700;">Cargar las claves</span></div><div style="font-size:18px; color:#5b6b80; line-height:1.4; margin-top:2px;">La cuenta de servicio de IT se guarda en un archivo protegido, nunca en el código.</div></div>
+    </div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
+
+    <!-- 3 -->
+    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">3</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="M10.5 12.5 21 2"></path><path d="M16 7l3 3"></path></svg></div>
+      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Cargar las llaves</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">IT entrega la <strong style="color:#0b1f33;">cuenta de servicio</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Guardar en el archivo <strong style="color:#0b1f33; font-family:'IBM Plex Mono',monospace; font-size:16px;">.env</strong> del servidor</span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#c0451c; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;"><strong style="color:#c0451c;">Nunca</strong> en el código ni en el front</span></div>
       </div>
-      <div style="display:flex; gap:20px;">
-        <div style="display:flex; flex-direction:column; align-items:center; flex:none;">
-          <div style="width:52px; height:52px; border-radius:50%; background:#0a59a6; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></div>
-          <div style="width:3px; flex:1; background:#cdddef; margin:6px 0;"></div>
-        </div>
-        <div style="padding-bottom:20px;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#0a59a6;">PASO 4</span><span style="font-size:23px; font-weight:700;">Instalar NOVA</span></div><div style="font-size:18px; color:#5b6b80; line-height:1.4; margin-top:2px;">IA, web, voz y base de datos quedan corriendo como servicios, en el disco propio.</div></div>
+    </div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
+
+    <!-- 4 -->
+    <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e9f2; border-radius:16px; padding:24px 20px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#0a59a6; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">4</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></div>
+      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Instalar NOVA</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Copiar la <strong style="color:#0b1f33;">aplicación</strong> al servidor</span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Levantar <strong style="color:#0b1f33;">IA, web, voz y base de datos</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#0a59a6; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Corren como <strong style="color:#0b1f33;">servicios del sistema</strong></span></div>
       </div>
-      <div style="display:flex; gap:20px;">
-        <div style="display:flex; flex-direction:column; align-items:center; flex:none;">
-          <div style="width:52px; height:52px; border-radius:50%; background:#1f9d6b; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"></path><path d="M18.4 6.6a9 9 0 1 1-12.8 0"></path></svg></div>
-        </div>
-        <div><div style="display:flex; align-items:center; gap:10px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#1f8a5b;">PASO 5</span><span style="font-size:23px; font-weight:700;">Publicar y arrancar</span></div><div style="font-size:18px; color:#5b6b80; line-height:1.4; margin-top:2px;">Se activa el HTTPS del ITCA y el arranque automático: todo levanta solo tras reiniciar.</div></div>
+    </div>
+    <div style="align-self:center; color:#c2cfde; font-size:24px; flex:none;">→</div>
+
+    <!-- 5 -->
+    <div style="flex:1; display:flex; flex-direction:column; background:#f1faf5; border:1px solid #c9ebd9; border-radius:16px; padding:24px 20px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="width:38px; height:38px; border-radius:50%; background:#1f9d6b; color:#fff; font-family:'Source Serif 4',serif; font-weight:700; font-size:21px; display:flex; align-items:center; justify-content:center; flex:none;">5</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1f9d6b" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"></path><path d="M18.4 6.6a9 9 0 1 1-12.8 0"></path></svg></div>
+      <div style="font-size:21px; font-weight:700; line-height:1.15; margin:8px 0 14px;">Publicar y arrancar</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Activar el <strong style="color:#0b1f33;">HTTPS del ITCA</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Activar el <strong style="color:#0b1f33;">arranque automático</strong></span></div>
+        <div style="display:flex; gap:9px; align-items:flex-start;"><span style="color:#1f9d6b; font-size:16px; line-height:1.4;">▸</span><span style="font-size:17px; line-height:1.35; color:#3d5163;">Disponible en el <strong style="color:#0b1f33;">DNS interno</strong></span></div>
       </div>
     </div>
 
-    <!-- Diagrama: servidor dentro del dominio -->
-    <div data-rise style="display:flex; flex-direction:column; justify-content:center;">
-      <div style="border:2px dashed #9dc0e6; border-radius:20px; padding:26px 26px 22px; background:#eef3fa; position:relative;">
-        <div style="position:absolute; top:-14px; left:24px; background:#00366b; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.12em; padding:6px 14px; border-radius:8px;">DOMINIO DEL ITCA</div>
-        <div style="background:#fff; border:1px solid #cdddef; border-radius:16px; padding:22px 24px; margin-top:8px;">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0a59a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1.5"></rect><rect x="2" y="15" width="20" height="6" rx="1.5"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-            <div style="font-size:21px; font-weight:700; line-height:1.15;">Servidor NOVA<div style="font-size:14px; font-weight:600; color:#0a59a6; font-family:'IBM Plex Mono',monospace;">miembro del dominio</div></div>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:9px;">
-            <div style="display:flex; align-items:center; gap:10px; background:#f1faf5; border-radius:9px; padding:11px 14px;"><span style="font-size:18px;">🧠</span><span style="font-size:18px; color:#0b1f33;">La IA (corre en local)</span></div>
-            <div style="display:flex; align-items:center; gap:10px; background:#f1faf5; border-radius:9px; padding:11px 14px;"><span style="font-size:18px;">🗄️</span><span style="font-size:18px; color:#0b1f33;">Los datos de los aspirantes</span></div>
-            <div style="display:flex; align-items:center; gap:10px; background:#f1faf5; border-radius:9px; padding:11px 14px;"><span style="font-size:18px;">🔑</span><span style="font-size:18px; color:#0b1f33;">La identidad y las claves</span></div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:16px; color:#0a59a6;">
-          <span style="font-family:'IBM Plex Mono',monospace; font-size:15px;">HTTPS seguro</span>
-          <svg width="34" height="20" viewBox="0 0 34 20" fill="none" stroke="#0a59a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="10" x2="28" y2="10"></line><polyline points="22,4 30,10 22,16"></polyline></svg>
-          <span style="font-size:16px; color:#0b1f33; font-weight:600;">Personal del ITCA</span>
-        </div>
-      </div>
-      <div style="text-align:center; font-size:16px; color:#5b6b80; margin-top:14px;">Todo vive adentro · <strong style="color:#1f8a5b;">nada sale a la nube</strong></div>
-    </div>
   </div>
 
   <div data-rise style="margin-top:24px; background:#00366b; border-radius:16px; padding:20px 36px; display:flex; align-items:center; gap:22px;">
     <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#ff8a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-    <p style="margin:0; font-size:23px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">El servidor es un miembro más del dominio del ITCA:</strong> la IA, los datos y la identidad viven dentro de la institución.</p>
+    <p style="margin:0; font-size:23px; line-height:1.4; color:#e8f0fb;"><strong style="color:#fff;">El servidor queda como un miembro más del dominio del ITCA:</strong> la IA, los datos y la identidad viven dentro de la institución. Nada sale a la nube.</p>
   </div>
 </section>
 <!-- ============ 17 · CIERRE ============ -->
