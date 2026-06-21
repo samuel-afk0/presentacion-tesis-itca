@@ -276,7 +276,7 @@
 </section>
 
 <!-- ============ 10 · JUSTIFICACIÓN / IMPACTO ============ -->
-<section data-label="Justificación · Impacto" data-screen-label="10" data-speaker-notes="Justificar el valor: acompañamiento personalizado que reduce la deserción, atención 24/7 incluso en vacaciones, y costo de inferencia cero con privacidad total. Resaltar los tres indicadores animados." style="position:relative; width:100%; height:100%; background:#00366b; color:#fff; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<section data-label="Justificación · Impacto" data-screen-label="10" data-speaker-notes="Justificar el valor: acompañamiento personalizado que reduce la deserción, atención por dos canales (voz y chat) 24/7 incluso en vacaciones, y ejecución local con privacidad total. Resaltar los tres indicadores animados." style="position:relative; width:100%; height:100%; background:#00366b; color:#fff; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="position:absolute; left:-160px; bottom:-180px; width:620px; height:620px; border-radius:50%; background:radial-gradient(circle, rgba(232,83,14,.18), rgba(232,83,14,0) 64%);"></div>
   <div style="display:flex; align-items:center; justify-content:space-between; position:relative;">
     <div style="display:flex; align-items:center; gap:14px;">
@@ -293,7 +293,7 @@
     <div data-rise style="animation-delay:.19s; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:18px; padding:36px 32px;"><div style="font-size:26px; font-weight:700; margin-bottom:12px; color:#fff;">Autonomía tecnológica</div><p style="font-size:20px; line-height:1.55; color:#bcd3ea; margin:0;">Arquitectura de código abierto en servidores internos: costo de inferencia cero y resguardo total de la información institucional.</p></div>
   </div>
   <div data-rise style="display:grid; grid-template-columns:repeat(3,1fr); gap:30px; position:relative;">
-    <div style="text-align:center; border-top:3px solid #e8530e; padding-top:24px;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:88px; line-height:1; color:#ff8a52;">{{ inferDisp }}</div><div style="font-size:20px; color:#bcd3ea; margin-top:10px;">costo por consulta tras el despliegue</div></div>
+    <div style="text-align:center; border-top:3px solid #e8530e; padding-top:24px;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:88px; line-height:1; color:#ff8a52;">{{ chanDisp }}</div><div style="font-size:20px; color:#bcd3ea; margin-top:10px;">canales de atención · voz y chat</div></div>
     <div style="text-align:center; border-top:3px solid #e8530e; padding-top:24px;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:88px; line-height:1; color:#ff8a52;">{{ availDisp }}<span style="font-size:48px;">/7</span></div><div style="font-size:20px; color:#bcd3ea; margin-top:10px;">disponibilidad continua</div></div>
     <div style="text-align:center; border-top:3px solid #e8530e; padding-top:24px;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:88px; line-height:1; color:#ff8a52;">{{ privDisp }}<span style="font-size:48px;">%</span></div><div style="font-size:20px; color:#bcd3ea; margin-top:10px;">ejecución local y privada</div></div>
   </div>
@@ -315,7 +315,7 @@
 </section>
 
 <!-- ============ 12 · COSTO DE IMPLEMENTACIÓN ============ -->
-<section data-label="Costo de implementación" data-screen-label="12" data-speaker-notes="La plataforma corrió en una instancia g5.2xlarge (NVIDIA A10G, 22.35 GB VRAM, 8 vCPU, 32 GiB RAM) a ~$1.212/h, unos $884/mes en us-east-1. Pero los modelos solo necesitan unos 12 GB de VRAM, así que RECOMENDAMOS migrar a una g4dn.xlarge (NVIDIA T4, 16 GB VRAM, 4 vCPU, 16 GiB RAM) a ~$0.526/h, ~$383/mes — más del 50% de ahorro — y con instancias spot baja a ~$0.213/h. Recalcar: sea cual sea la instancia, el costo POR CONSULTA es cero porque la inferencia es local, y los datos nunca salen del servidor. Las cifras son precios on-demand de AWS, junio 2026, referenciales." style="position:relative; width:100%; height:100%; background:#fff; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
+<section data-label="Costo de implementación" data-screen-label="12" data-speaker-notes="La plataforma corrió en una instancia g5.2xlarge (NVIDIA A10G, 22.35 GB VRAM, 8 vCPU, 32 GiB RAM) a ~$1.212/h, unos $884/mes en us-east-1. Pero los modelos solo necesitan unos 12 GB de VRAM, así que RECOMENDAMOS migrar a una g4dn.xlarge (NVIDIA T4, 16 GB VRAM, 4 vCPU, 16 GiB RAM) a ~$0.526/h, ~$383/mes — más del 50% de ahorro — y con instancias spot baja a ~$0.213/h. Recalcar: sea cual sea la instancia, el costo POR CONSULTA es cero porque la inferencia es local, y los datos nunca salen del servidor. Las cifras son precios on-demand de AWS, junio 2026, referenciales. Con el toggle 'Servidor local' se muestra la alternativa on-premise: si el ITCA prefiere alojarlo en su propio servidor, los requisitos mínimos son GPU con ≥12 GB VRAM, CPU de 4+ núcleos, 16 GB de RAM, SSD ≥256 GB, Linux con Docker y red estable con respaldo eléctrico — sin detallar precios de componentes. El mismo stack corre igual, la inferencia sigue siendo local y los datos no salen del ITCA." style="position:relative; width:100%; height:100%; background:#fff; color:#0b1f33; font-family:'Libre Franklin',sans-serif; overflow:hidden; display:flex; flex-direction:column; padding:84px 120px;">
   <div style="display:flex; align-items:center; justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:14px;">
       <svg width="44" height="44" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="13" fill="#00366b"></rect><rect x="30" y="30" width="22" height="22" rx="7" fill="#e8530e"></rect><text x="17" y="34" font-family="'Libre Franklin'" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">IT</text></svg>
@@ -324,7 +324,12 @@
     <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.18em; color:#9aa9bd;">12 / 16</div>
   </div>
   <div data-rise style="display:flex; align-items:baseline; justify-content:space-between; margin:30px 0 14px;"><span style="font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.2em; color:#e8530e;">12 · COSTO DE IMPLEMENTACIÓN</span><span style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:#9aa9bd;">PRECIOS ON-DEMAND AWS · us-east-1 · JUN 2026</span></div>
-  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:52px; line-height:1.04; margin:0 0 26px;">La GPU adecuada cuesta la mitad — y la consulta sigue en <span style="color:#1f9d6b;">$0</span></h2>
+  <h2 data-rise style="font-family:'Source Serif 4',serif; font-weight:700; font-size:52px; line-height:1.04; margin:0 0 22px;">La GPU adecuada cuesta la mitad — y la consulta sigue en <span style="color:#1f9d6b;">$0</span></h2>
+  <div data-rise style="display:flex; gap:14px; margin-bottom:24px;">
+    <div onClick="{{ setInfraCloud }}" style="cursor:pointer; display:flex; align-items:center; gap:12px; padding:16px 26px; border-radius:14px; border:2px solid #0a59a6; background:{{ cloudTabBg }}; color:{{ cloudTabColor }};"><span style="font-size:22px;">☁️</span><div><div style="font-size:22px; font-weight:700;">Nube (AWS)</div><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; opacity:.8;">INSTANCIA GESTIONADA</div></div></div>
+    <div onClick="{{ setInfraLocal }}" style="cursor:pointer; display:flex; align-items:center; gap:12px; padding:16px 26px; border-radius:14px; border:2px solid #1f9d6b; background:{{ localTabBg }}; color:{{ localTabColor }};"><span style="font-size:22px;">🖥️</span><div><div style="font-size:22px; font-weight:700;">Servidor local</div><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; opacity:.8;">ON-PREMISE EN EL ITCA</div></div></div>
+  </div>
+  <sc-if value="{{ infraCloud }}" hint-placeholder-val="{{ true }}"><div style="display:flex; flex-direction:column; flex:1;">
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:stretch; margin-bottom:26px;">
     <!-- ACTUAL: g5.2xlarge -->
     <div data-rise style="position:relative; border:1px solid #d9e1ee; border-radius:18px; padding:32px 34px; background:#f8fafd; display:flex; flex-direction:column;">
@@ -363,6 +368,19 @@
     <div style="border-left:1px solid rgba(255,255,255,.18); padding-left:30px;"><p style="margin:0; font-size:23px; line-height:1.45; color:#e8f0fb;">Los modelos solo necesitan <strong style="color:#fff;">~12 GB de VRAM</strong>: la g4dn.xlarge ahorra <strong style="color:#fff;">unos $500/mes</strong> sin sacrificar rendimiento, y las instancias <strong style="color:#fff;">spot</strong> reducen aún más el costo.</p></div>
     <div style="text-align:center;"><div style="font-family:'Source Serif 4',serif; font-weight:700; font-size:60px; line-height:1; color:#7fe3b8;">$0</div><div style="font-size:17px; color:#9dc0e6; margin-top:6px;">por consulta · local</div></div>
   </div>
+  </div></sc-if>
+  <sc-if value="{{ infraLocal }}" hint-placeholder-val="{{ false }}"><div style="display:flex; flex-direction:column; flex:1;">
+    <div data-rise style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.16em; color:#1f8a5b; margin-bottom:20px;">ALTERNATIVA ON-PREMISE · SIN NUBE · REQUISITOS MÍNIMOS</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:26px;">
+      <div data-rise style="border:1px solid #d9e1ee; border-radius:16px; padding:26px 28px; background:#f8fafd;"><div style="font-size:30px; margin-bottom:10px;">🎮</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.14em; color:#8aa0bb; margin-bottom:6px;">GPU</div><div style="font-size:21px; font-weight:700; color:#0b1f33; line-height:1.3;">NVIDIA con ≥12 GB VRAM<br><span style="font-weight:500; font-size:16px; color:#5b6b80;">T4, RTX 3060/4060 o superior</span></div></div>
+      <div data-rise style="animation-delay:.05s; border:1px solid #d9e1ee; border-radius:16px; padding:26px 28px; background:#f8fafd;"><div style="font-size:30px; margin-bottom:10px;">🧠</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.14em; color:#8aa0bb; margin-bottom:6px;">CPU</div><div style="font-size:21px; font-weight:700; color:#0b1f33; line-height:1.3;">4+ núcleos x86-64<br><span style="font-weight:500; font-size:16px; color:#5b6b80;">procesador moderno</span></div></div>
+      <div data-rise style="animation-delay:.1s; border:1px solid #d9e1ee; border-radius:16px; padding:26px 28px; background:#f8fafd;"><div style="font-size:30px; margin-bottom:10px;">💾</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.14em; color:#8aa0bb; margin-bottom:6px;">RAM</div><div style="font-size:21px; font-weight:700; color:#0b1f33; line-height:1.3;">16 GB mínimo<br><span style="font-weight:500; font-size:16px; color:#5b6b80;">32 GB recomendado</span></div></div>
+      <div data-rise style="animation-delay:.15s; border:1px solid #d9e1ee; border-radius:16px; padding:26px 28px; background:#f8fafd;"><div style="font-size:30px; margin-bottom:10px;">🗄️</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.14em; color:#8aa0bb; margin-bottom:6px;">ALMACENAMIENTO</div><div style="font-size:21px; font-weight:700; color:#0b1f33; line-height:1.3;">SSD ≥256 GB<br><span style="font-weight:500; font-size:16px; color:#5b6b80;">modelos + documentos + BD</span></div></div>
+      <div data-rise style="animation-delay:.2s; border:1px solid #d9e1ee; border-radius:16px; padding:26px 28px; background:#f8fafd;"><div style="font-size:30px; margin-bottom:10px;">🐧</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.14em; color:#8aa0bb; margin-bottom:6px;">SISTEMA</div><div style="font-size:21px; font-weight:700; color:#0b1f33; line-height:1.3;">Linux (Ubuntu Server LTS)<br><span style="font-weight:500; font-size:16px; color:#5b6b80;">con Docker</span></div></div>
+      <div data-rise style="animation-delay:.25s; border:1px solid #d9e1ee; border-radius:16px; padding:26px 28px; background:#f8fafd;"><div style="font-size:30px; margin-bottom:10px;">⚡</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.14em; color:#8aa0bb; margin-bottom:6px;">OPERACIÓN</div><div style="font-size:21px; font-weight:700; color:#0b1f33; line-height:1.3;">Red cableada estable<br><span style="font-weight:500; font-size:16px; color:#5b6b80;">UPS / respaldo eléctrico</span></div></div>
+    </div>
+    <div data-rise style="margin-top:auto; display:flex; align-items:flex-start; gap:16px; background:#00366b; border-radius:18px; padding:26px 34px;"><span style="font-size:24px;">🔒</span><p style="margin:0; font-size:22px; line-height:1.45; color:#e8f0fb;">El mismo stack (<strong style="color:#fff;">Ollama, pgvector, Django</strong>) corre igual on-premise: la inferencia es <strong style="color:#fff;">local</strong>, el costo por consulta sigue en <strong style="color:#7fe3b8;">$0</strong> y los datos <strong style="color:#fff;">nunca salen del ITCA</strong>.</p></div>
+  </div></sc-if>
 </section>
 
 <!-- ============ 13 · ACTIVE DIRECTORY · CONCEPTO ============ -->
@@ -527,8 +545,9 @@ class Component extends DCLogic {
     rag: 0,
     ad: 0,
     impl: 'azure',
+    infra: 'cloud',
     threat: 'con',
-    cG5: 0, cG4: 0, cSave: 0, cAvail: 0, cPriv: 0, cInfer: 0,
+    cG5: 0, cG4: 0, cSave: 0, cAvail: 0, cPriv: 0, cChan: 0,
     costDone: false, justDone: false,
   };
 
@@ -538,7 +557,7 @@ class Component extends DCLogic {
       if (i === null) return;
       if (i === 9 && !this.state.justDone) {
         this.setState({ justDone: true });
-        this.animate({ cAvail: 24, cPriv: 100 }, 1100);
+        this.animate({ cAvail: 24, cPriv: 100, cChan: 2 }, 1100);
       }
       if (i === 11 && !this.state.costDone) {
         this.setState({ costDone: true });
@@ -655,6 +674,15 @@ class Component extends DCLogic {
       azureTabColor: s.impl === 'azure' ? '#fff' : '#0a59a6',
       ldapTabBg: s.impl === 'ldap' ? '#00366b' : '#fff',
       ldapTabColor: s.impl === 'ldap' ? '#fff' : '#5b6b80',
+      // costo · infraestructura
+      setInfraCloud: () => this.setState({ infra: 'cloud' }),
+      setInfraLocal: () => this.setState({ infra: 'local' }),
+      infraCloud: s.infra === 'cloud',
+      infraLocal: s.infra === 'local',
+      cloudTabBg: s.infra === 'cloud' ? '#00366b' : '#fff',
+      cloudTabColor: s.infra === 'cloud' ? '#fff' : '#0a59a6',
+      localTabBg: s.infra === 'local' ? '#1f9d6b' : '#fff',
+      localTabColor: s.infra === 'local' ? '#fff' : '#137a52',
       // active directory · modelo de amenazas
       setThreatAntes: () => this.setState({ threat: 'antes' }),
       setThreatCon: () => this.setState({ threat: 'con' }),
@@ -670,7 +698,7 @@ class Component extends DCLogic {
       savePctDisp: String(Math.round(s.cSave)),
       availDisp: String(Math.round(s.cAvail)),
       privDisp: String(Math.round(s.cPriv)),
-      inferDisp: '$' + Math.round(s.cInfer),
+      chanDisp: String(Math.round(s.cChan)),
     };
   }
 }
